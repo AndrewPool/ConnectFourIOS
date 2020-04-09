@@ -28,7 +28,7 @@ public class DropSlot : MonoBehaviour
     public void HitButton()
     {
         Debug.Log("button hit "+Identity);
-        gameController.SelectColumn(Identity);
+        gameController.PlayerSelectColumn(Identity);
     }
 
     //set identity
@@ -38,14 +38,7 @@ public class DropSlot : MonoBehaviour
         Identity = identity;
     }
 
-    public void Reset()
-    {
-        Debug.Log("reseting game");
-        foreach(PlaySpace space in playSpaces)
-        {
-            space.Clear();
-        }
-    }
+    
 
 
     private void Start()

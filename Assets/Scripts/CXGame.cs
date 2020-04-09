@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-class CXGameModel
+public class CXGameModel
 {
 
   //  public CXGameModel clone() {
@@ -138,11 +138,16 @@ class CXGameModel
 
         Location aboveLocation = new Location(rootLocation.row + 1, column);
 
+        Location aboveTwiceLocation = new Location(aboveLocation.row + 1, column);
+
         VectorGrade grade = BestVectorGradeForColumn(rootLocation, player, true);
         //do not check below because board state is not updated 
         VectorGrade gradeAbove = BestVectorGradeForColumn(aboveLocation, player, false);
+        //one more time.
+        VectorGrade gradeAboveTwice = BestVectorGradeForColumn(aboveTwiceLocation, player, false);
 
         player = !player;
+
         VectorGrade opponentGrade = BestVectorGradeForColumn(rootLocation, player, true);
         //do not check below because board state is not updated
         VectorGrade opponentGradeAbove = BestVectorGradeForColumn(aboveLocation, player, false);
@@ -153,6 +158,12 @@ class CXGameModel
         if (grade.lengthOfChain >= 4) return 200;
         if (opponentGrade.lengthOfChain >= 4) return 199;
         if (opponentGradeAbove.lengthOfChain >= 4) return -200;
+
+        //this is another win move, remember we already checked and guarded against oppenent wins above
+        if(gradeAbove.lengthOfChain >= 4 && gradeAboveTwice.lengthOfChain >= 4)
+        {
+            return 198;
+        }
 
         //else take the sum, of your score with the difference of the opponents play
         //Console.WriteLine("myscore");

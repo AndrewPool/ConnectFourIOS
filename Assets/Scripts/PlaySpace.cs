@@ -15,33 +15,5 @@ public class PlaySpace : MonoBehaviour
     //refrence cache
     Image image;
 
-    private void Start()
-    {
-        image = gameObject.GetComponent<Image>();
-        if (image == null)
-        {
-            Debug.Log("still null start");
-        }
-
-
-    }
-
-    public void Clear()
-    {
-        //Debug.Log("clearing space");
-        image.sprite = null;
-    }
-
-    public void SetToken(bool player)
-    {
-        if (image == null)
-        {
-            Debug.Log("still null");
-            image = gameObject.GetComponent<Image>();
-        }
-       
-        image.sprite = player ? playerOneToken : playerTwoToken;
-      
-
-    }
+ 
 }
