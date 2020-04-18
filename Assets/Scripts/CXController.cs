@@ -119,6 +119,7 @@ public class CXController : MonoBehaviour
         
         GameObject newToken = Instantiate<GameObject>(TokenForCurrentPlayer(), transform.position,Quaternion.identity);
 
+        
         //Vector2 size = dropSlots[0].transform.lossyScale;
         ////size.x = 1000f;
         ////size.x = (size.x * dropSlots[0].transform.localScale.x) / dropSlots[0].transform.lossyScale.x;
