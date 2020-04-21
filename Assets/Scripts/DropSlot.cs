@@ -28,7 +28,7 @@ public class DropSlot : MonoBehaviour
     public void HitButton()
     {
         Debug.Log("button hit "+Identity);
-        gameController.PlayerSelectColumn(Identity);
+        gameController.SelectColumn(Identity);
     }
 
     //set identity

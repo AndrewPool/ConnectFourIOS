@@ -8,7 +8,6 @@ public class CXController : MonoBehaviour
     //----------------config paramaters-----------------
 #pragma warning disable 0649
     [SerializeField] DropSlot[] dropSlots;
-    [SerializeField] Button computerIcon;
     [SerializeField] Image nextToken;
     [SerializeField] GameObject player1Token;
     [SerializeField] GameObject player2Token;
@@ -34,23 +33,14 @@ public class CXController : MonoBehaviour
     //State Variables and Properties
     public CXGameModel game = new CXGameModel();
 
-    public bool computerPlayer = false;
-    public bool computerPlaying = false;
-    public void ToggleComputerPlaying()
-    {
-        computerPlaying = !computerPlaying;
 
-        SetComputerIcon();
-    }
-
-
-    public void PlayerSelectColumn(int column)
-    {
-        if(game.CurrentPlayer == !computerPlayer || computerPlaying == false)
-        {
-            SelectColumn(column);
-        }
-    }
+    //public void PlayerSelectColumn(int column)
+    //{
+    //    if(game.CurrentPlayer == !computerPlayer || computerPlaying == false)
+    //    {
+    //        SelectColumn(column);
+    //    }
+    //}
 
 
     //game loop is in here once player picks a slot
@@ -76,19 +66,7 @@ public class CXController : MonoBehaviour
 
 
     }
-    private void SetComputerIcon()
-    {
-
-        if (computerPlaying)
-        {
-            computerIcon.image.color = Color.green;
-        }
-        else
-        {
-            computerIcon.image.color = Color.black;
-        }
-    }
-
+    
     //TODO
     private void SetNextPlayerToken()
     {
@@ -178,8 +156,7 @@ public class CXController : MonoBehaviour
             dropSlots[i].SetIdentity(i, this);
         }
         // NewGame();
-        SetComputerIcon();
-
+     
 
         canvas = FindObjectOfType<Canvas>();
     }
