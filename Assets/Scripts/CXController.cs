@@ -12,6 +12,7 @@ public class CXController : MonoBehaviour
     [SerializeField] GameObject player1Token;
     [SerializeField] GameObject player2Token;
     [SerializeField] GameObject tokenParent;
+    [SerializeField] SoundPlayer soundPlayer;
     //  [SerializeField] Text winText;
 #pragma warning restore 0649
 
@@ -34,19 +35,11 @@ public class CXController : MonoBehaviour
     public CXGameModel game = new CXGameModel();
 
 
-    //public void PlayerSelectColumn(int column)
-    //{
-    //    if(game.CurrentPlayer == !computerPlayer || computerPlaying == false)
-    //    {
-    //        SelectColumn(column);
-    //    }
-    //}
-
 
     //game loop is in here once player picks a slot
     public void SelectColumn(int column)
     {
-        if (!game.Over)
+        if (!game.Over && !animating)
         {
             animating = true;
             Debug.Log("selcting column " + column);
@@ -60,13 +53,26 @@ public class CXController : MonoBehaviour
 
             }
 
-            SetNextPlayerToken();
-
+            // SetNextPlayerToken();
+            WinCheck(true);
         }
-
+     
 
     }
-    
+    private void WinCheck(bool isHuman)
+    {
+        if (game.Over)
+        {
+            if (isHuman)
+            {
+                soundPlayer.PlayWinSound();
+            }
+            else
+            {
+                soundPlayer.PlayLooseSound();
+            }
+        }
+    }
     //TODO
     private void SetNextPlayerToken()
     {
@@ -89,6 +95,7 @@ public class CXController : MonoBehaviour
         }
         game.MakeMoveWithColumn(bestMove);
         AddPlayerTokenToBoard(bestMove);
+        WinCheck(false);
     }
 
     private void AddPlayerTokenToBoard(int column)
@@ -109,17 +116,20 @@ public class CXController : MonoBehaviour
 
         Token token= newToken.GetComponent<Token>();
         token.SetNewPosition(dropSlots[column].GetPlaySpace(game.NumberTokensInColumn[column] - 1).transform.position);
+        token.SetSoundPlayer(soundPlayer);
         newToken.GetComponent<RectTransform>().localScale = tokenParent.transform.lossyScale;
         piecesOnBoard.Add(token);
        
        
     }
+
     IEnumerator WaitForAnimation()
     {
         yield return new WaitForSeconds(1);
         animating = false;
         yield return null;
     }
+
     private GameObject TokenForCurrentPlayer()
     {
         if (game.CurrentPlayer)
