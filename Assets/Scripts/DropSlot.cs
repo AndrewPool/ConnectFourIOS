@@ -12,10 +12,7 @@ public class DropSlot : MonoBehaviour
     CXController gameController;
 
     //state variables and properties
-    public int Identity
-    {
-        get; private set;
-    }
+    public int Identity {  get; private set;  }
 
 
     //getter for playSpaces
