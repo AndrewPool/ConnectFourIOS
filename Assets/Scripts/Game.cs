@@ -1,12 +1,9 @@
 ﻿
 using System.Collections.Generic;
 
-public class CXGameModel
+public class GameModel
 {
 
-  //  public CXGameModel clone() {
-    //return
-      //      }
     private IDictionary<string, Location> travelTokenVectors = new Dictionary<string, Location>();
 
 
@@ -16,7 +13,9 @@ public class CXGameModel
         private set;
     }
 
-
+    /// <summary>
+    /// this with number of tokens in column can be used to determine what/where the tokens are
+    /// </summary>
     public bool[,] GameState
     {
         get;
@@ -57,7 +56,7 @@ public class CXGameModel
 
 
 
-    public CXGameModel()
+    public GameModel()
     {
 
         NumberTokensInColumn = new int[] { 0, 0, 0, 0, 0, 0, 0 };
@@ -171,7 +170,7 @@ public class CXGameModel
         //deweight score if the over spot is a win for you
         if (gradeAbove.lengthOfChain >= 4)
         {
-            sumOfScores -= 40;
+            sumOfScores -= 40;//this is a number that is probably too large
         }
         return sumOfScores;
     }

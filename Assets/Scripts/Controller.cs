@@ -31,7 +31,7 @@ public class CXController : MonoBehaviour
 
 
     //State Variables and Properties
-    public CXGameModel game = new CXGameModel();
+    public GameModel game = new GameModel();
 
 
     //public void PlayerSelectColumn(int column)
@@ -134,7 +134,7 @@ public class CXController : MonoBehaviour
     {
 
        // winText.text = "";
-        game = new CXGameModel();
+        game = new GameModel();
         
 
         foreach(Token t in piecesOnBoard)
