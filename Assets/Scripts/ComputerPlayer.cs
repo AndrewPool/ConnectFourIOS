@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ComputerPlayer : MonoBehaviour
 {
     [SerializeField] CXController gameController;
@@ -38,9 +39,9 @@ public class ComputerPlayer : MonoBehaviour
         ////if it is this player and it isn't animating
         if (gameController.game.CurrentPlayer == computerPlayer && !gameController.animating && computerPlaying && !gameController.game.Over)//your turn,not animating, and game isn't over
         {
-           
+
                 gameController.MakeComputerMove();
-            
+
         }
     }
 }
