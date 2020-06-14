@@ -259,7 +259,7 @@ public class GameModel
         //and the other way
         if (checkBelow == true)
         {
-            continousChain = true;
+            continousChain = true;//canidate for deleteion
             Location reversedDirection = direction.VectorReversed();
             currentLocation = rootLocation;
             for (int i = 0; i < 3; i++)
