@@ -9,13 +9,13 @@ public class Token : MonoBehaviour
     private SoundPlayer soundPlayer;
     [SerializeField] Sprite[] emitterImages;
     private bool landed = false;
-    Vector3 newPosition;
+    Vector2 newPosition;
     private static float speed = 800f;
- 
-    public void SetNewPosition(Vector3 pos)
+
+    public void SetNewPosition(Vector2 pos)
     {
-        Vector3 lossyScale = GetComponent<RectTransform>().lossyScale;
-        newPosition = new Vector3(pos.x * lossyScale.x, pos.y *lossyScale.y, pos.z);
+        Vector2 lossyScale = GetComponent<RectTransform>().lossyScale;
+        newPosition = new Vector2(pos.x * lossyScale.x, pos.y *lossyScale.y);
     }
 
    public void SetSoundPlayer(SoundPlayer sp)
@@ -26,25 +26,19 @@ public class Token : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-        
-        //yield return WaitForFixedUpdate;
 
         if (!landed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
-            float dify = transform.position.y - newPosition.y;
-            Debug.Log(transform.position.y);
-            Debug.Log(newPosition.y);
-            Debug.Log(dify);
-            if (dify <= 0.5f )
+            transform.position = Vector2.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
+           
+            if (new Vector2(transform.position.x, transform.position.y) == newPosition)
             {
                 Debug.Log("happened");
                 landed = true;
                 soundPlayer.PlayTokenContact();
             }
         }
-        
+
     }
 
 

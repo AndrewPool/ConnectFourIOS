@@ -90,7 +90,7 @@ public class GameModel
             NumberTokensInColumn[column] = NumberTokensInColumn[column] + 1;
             CurrentPlayer = !CurrentPlayer;
 
-            if (ValidMovesWithGrades[column] == 200)
+            if (ValidMovesWithGrades[column] == VectorGrade.WinningScore)
             {
                 Over = true;
                 if (CurrentPlayer == true)
@@ -154,7 +154,7 @@ public class GameModel
         //Console.WriteLine(opponentGradeAbove.lengthOfChain + " length of chain"); }
 
         //this is a must make play do not bother with math!
-        if (grade.lengthOfChain >= 4) return 200;
+        if (grade.lengthOfChain >= 4) return VectorGrade.WinningScore;
         if (opponentGrade.lengthOfChain >= 4) return 199;
         if (opponentGradeAbove.lengthOfChain >= 4) return -200;
 
@@ -333,6 +333,7 @@ public class GameModel
 //detailed stats on the move
 struct VectorGrade
 {
+    public static readonly int WinningScore = 1000000;
     public readonly int lengthOfChain;
     public readonly int maxLengthOfChain;
     public readonly bool openEndedBothWays;
@@ -348,7 +349,7 @@ struct VectorGrade
     private static int SetScore(int length, int maxLength, bool openEnded)
     {
         if (maxLength < 4) return 0;
-        if (length >= 4) return 200;
+        if (length >= 4) return VectorGrade.WinningScore;
         if (length >= 3 && openEnded) return 100;
 
         int returnScore = length * 10 + maxLength;
@@ -373,8 +374,7 @@ struct Location
 
 
     public Location VectorReversed()
-    {
-      
+    {   
         return new Location(-row, -column);
     }
 }
