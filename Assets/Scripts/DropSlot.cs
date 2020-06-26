@@ -9,7 +9,7 @@ public class DropSlot : MonoBehaviour
 
 
     //refrence cache
-    CXController gameController;
+    Controller gameController;
 
     //state variables and properties
     public int Identity {  get; private set;  }
@@ -24,14 +24,14 @@ public class DropSlot : MonoBehaviour
     //what heppens when you hit this button
     public void HitButton()
     {
-        Debug.Log("button hit "+Identity);
+      //  Debug.Log("button hit "+Identity);
         gameController.SelectColumn(Identity);
     }
 
     //set identity
-    public void SetIdentity(int identity, CXController cXController)
+    public void SetIdentity(int identity, Controller Controller)
     {
-        gameController = cXController;
+        gameController = Controller;
         Identity = identity;
     }
 

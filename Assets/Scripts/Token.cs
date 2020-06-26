@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Token : MonoBehaviour
 {
     private SoundPlayer soundPlayer;
-    [SerializeField] Sprite[] emitterImages;
+
+    //[SerializeField] Sprite[] emitterImages;
+
     private bool landed = false;
     Vector2 newPosition;
     private static float speed = 800f;
@@ -18,9 +20,9 @@ public class Token : MonoBehaviour
         newPosition = new Vector2(pos.x * lossyScale.x, pos.y *lossyScale.y);
     }
 
-   public void SetSoundPlayer(SoundPlayer sp)
+    private void Start()
     {
-        soundPlayer = sp;
+        soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     // Update is called once per frame
@@ -30,8 +32,13 @@ public class Token : MonoBehaviour
         if (!landed)
         {
             transform.position = Vector2.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
-           
-            if (new Vector2(transform.position.x, transform.position.y) == newPosition)
+
+
+            var selfLoc = new Vector2(transform.position.x, transform.position.y);
+            Debug.Log(selfLoc);
+            Debug.Log(newPosition);
+            var magnitude = Vector2.SqrMagnitude(selfLoc-newPosition);
+            if (magnitude < 1.0f)
             {
                 Debug.Log("happened");
                 landed = true;

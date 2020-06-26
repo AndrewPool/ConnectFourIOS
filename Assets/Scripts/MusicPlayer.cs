@@ -18,7 +18,7 @@ public class MusicPlayer : MonoBehaviour
     }
     public void Toggle(bool on)
     {
-
+       
         audioSource.mute = on;        
     }
 }

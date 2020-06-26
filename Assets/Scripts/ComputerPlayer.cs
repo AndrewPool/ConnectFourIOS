@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ComputerPlayer : MonoBehaviour
 {
-    [SerializeField] CXController gameController;
+    Controller gameController;
 
     //[SerializeField] Button computerIcon;
 
@@ -19,6 +19,7 @@ public class ComputerPlayer : MonoBehaviour
     }
     private void Start()
     {
+        gameController = FindObjectOfType<Controller>();
         computerPlaying = true;
         ButtonImageToggle brain = GetComponent<ButtonImageToggle>();
         brain.Toggle(computerPlaying);
