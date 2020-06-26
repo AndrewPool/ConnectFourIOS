@@ -14,7 +14,7 @@ public class ButtonImageToggle : MonoBehaviour
 #pragma warning restore CS0649
 
     //refrence cache
-    Image image;
+    private Image image;
 
     //State, probably could be internal, debug is a thing
     public bool On { get; private set; }
@@ -22,6 +22,10 @@ public class ButtonImageToggle : MonoBehaviour
     private void Start()
     {
         image = GetComponent<Image>();
+        if(image == null)
+        {
+            Debug.Log("image isn't a thing?");
+        }
     }
 
     public void Toggle()

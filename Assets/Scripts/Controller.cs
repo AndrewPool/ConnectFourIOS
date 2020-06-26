@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CXController : MonoBehaviour
+public class Controller : MonoBehaviour
 {
     //----------------config paramaters-----------------
 #pragma warning disable 0649
@@ -42,7 +42,7 @@ public class CXController : MonoBehaviour
         if (!game.Over && !animating)
         {
             animating = true;
-            Debug.Log("selcting column " + column);
+            //Debug.Log("selcting column " + column);
 
             if (game.MakeMoveWithColumn(column))
             {
@@ -116,7 +116,7 @@ public class CXController : MonoBehaviour
 
         Token token= newToken.GetComponent<Token>();
         token.SetNewPosition(dropSlots[column].GetPlaySpace(game.NumberTokensInColumn[column] - 1).transform.position);
-        token.SetSoundPlayer(soundPlayer);
+        //token.SetSoundPlayer(soundPlayer);
         newToken.GetComponent<RectTransform>().localScale = tokenParent.transform.lossyScale;
         piecesOnBoard.Add(token);
        
@@ -160,7 +160,7 @@ public class CXController : MonoBehaviour
     void Start()
     {
       //  winText.text = "";
-        Debug.Log("start cxcontroller");
+        Debug.Log("start controller");
         for (int i = 0; i < dropSlots.Length; i++)
         {
             dropSlots[i].SetIdentity(i, this);
